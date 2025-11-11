@@ -1,0 +1,81 @@
+:root{
+    --main-font:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body{
+    margin: 0px;
+    border: 0px;
+}
+
+header{
+    background-color: #FAEAB1;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.logo {
+    font-family: var(--main-font);
+    color: #2D5158;
+    margin: 0;
+}
+
+.searchBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.searchInput {
+    width: 400px;
+    height: 40px;
+    padding: 0 15px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    font-family: var(--main-font);
+}
+
+.searchBtn {
+    background-color: #2D5158;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: var(--main-font);
+    transition: background-color 0.3s ease;
+}
+
+.searchBtn:hover {
+    background-color: #4C7B83;
+}
+
+.navList {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.navList a {
+    text-decoration: none;
+    color: #4C7B83;
+    font-family: var(--main-font);
+    font-weight: 500;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.navList a:hover {
+    color: #2D5158;
+}

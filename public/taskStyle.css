@@ -1,0 +1,152 @@
+:root{
+    --main-font:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body{
+    margin: 0px;
+    border: 0px;
+}
+
+header{
+    background-color: #FAEAB1;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.logo {
+    font-family: var(--main-font);
+    color: #2D5158;
+    margin: 0;
+}
+
+.searchBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.searchInput {
+    width: 400px;
+    height: 40px;
+    padding: 0 15px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    font-family: var(--main-font);
+}
+
+.searchBtn {
+    background-color: #2D5158;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+ font-family: var(--main-font);
+    transition: background-color 0.3s ease;
+}
+
+.searchBtn:hover {
+    background-color: #4C7B83;
+}
+
+.navList {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.navList a {
+    text-decoration: none;
+    color: #4C7B83;
+    font-family: var(--main-font);
+    font-weight: 500;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.navList a:hover {
+    color: #2D5158;
+}
+
+
+/** ----------------------------------------------------------------------------- */
+/* MODAL BOX STYLE */
+
+.addTaskModal{
+   position: fixed;
+    top: 30%;
+    right: 45%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+
+
+}
+
+.modalHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.modalHeader span{
+    cursor: pointer;
+}
+
+#addTaskForm{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+
+}
+
+input{
+    border-radius: 10px;
+    border: 1px;
+    height: 30px;
+}
+
+
+.modalContent{
+    height: 350px;
+    width: 250px;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 30px;
+    background-color: lightgray;
+
+}
+
+.addTaskSubmitButton{
+    background-color: white;
+    border-radius: 10px;
+    width: 200px;
+    position: relative;
+    left: 10%;
+    margin-top: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
