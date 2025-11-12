@@ -1,3 +1,4 @@
+import { json } from "express"
 import {task} from "../model/task.js"
 
 export class taskManager{
@@ -72,6 +73,25 @@ export class taskManager{
             if(await response.ok){
                 return response.json()
             }
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    async editTask(newTaskName,newTaskDate){
+        try{
+            const response = fetch('/api/tasks/',{
+                method: 'PUT',
+                headers: {
+                    "Content-Type": "applpication/json"
+                },
+                body: JSON.stringify({
+                    newTaskName: newTaskName,
+                    newTaskDate: newTaskDate
+                })
+
+            })
+
         }catch(error){
             console.log(error)
         }

@@ -48,6 +48,29 @@
 
         </div>
 
+         <div class="editTaskModal">
+            <div class="modalContent">
+                <div class="modalHeader">
+                    <h2>EDIT TASK</h2>
+                    <span class="closeEditModal">&times;</span>
+                </div>
+                <form id="editTaskForm" action="POST">
+                    <label for="editTaskName">New Task Name: </label>
+                    <input type="text" name="taskName" id="editTaskName" placeholder="Task">
+
+                    <label for="editTaskDate">New Task Date: </label>
+                    <input type="date" name="taskDate" id="editTaskDate">
+
+                    <button type="submit"class="editTaskSubmitButton"> SUBMIT </button>
+                    <p class="editTaskStatus"></p>
+
+                </form>
+            </div>
+
+        </div>
+
+
+
         <div id="taskContainer">
 
         </div>

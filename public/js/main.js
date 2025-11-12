@@ -9,6 +9,10 @@ const closeTaskModal = document.querySelector(".closeModal")
 const addTaskBtn = document.querySelector(".addTaskBtn")
 const addTaskForm = document.querySelector('#addTaskForm')
 
+//EDIT TASK
+const editTaskModal = document.querySelector(".editTaskModal")
+
+
 //VIEW TASK
 const viewTaskBtn = document.querySelector(".viewTaskBtn")
 
@@ -87,6 +91,7 @@ viewTaskBtn.addEventListener('click', async () => {
                 </div>
                 <div class="task-date">📅 ${formattedDate}</div>
                 <div class="task-actions">
+                    <button class = "edit-btn" data-id ="${task.id}"> EDIT </button>
                     <button class="complete-btn" data-id="${task.id}">
                         ${taskCompleted ? 'Undo' : 'Complete'}
                     </button>
@@ -122,6 +127,34 @@ document.getElementById("taskContainer").addEventListener('click',async function
 
         viewTaskBtn.click()
     }
+
+    if(e.target.classList.contains("edit-btn")){
+        const taskId = e.target.getAttribute('data-id')
+        const closeEditTaskModal = document.querySelector(".closeEditModal")
+        const editTaskForm = document.getElementById("editTaskForm")
+        editTaskModal.style.display = "block"
+
+        closeEditTaskModal.addEventListener('click',()=>{
+        editTaskModal.style.display = "none"
+        })
+
+        editTaskForm.addEventListener('submit',(e)=>{
+            e.preventDefault();
+            const  newTaskInputField = document.getElementById("editTaskName");
+            const newTaskDateInputField = document.getElementById("editTaskDate");
+            const newTaskName = newTaskInputField.value
+            const newTaskDate = newTaskDateInputField.value
+
+            console.log(newTaskName,newTaskDate)
+
+            manager.editTask(newTaskName,newTaskDate);
+
+        })
+
+
+    }
+
+
 })
 
 
