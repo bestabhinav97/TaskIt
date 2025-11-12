@@ -22,21 +22,25 @@
     </header>
 
     <main>
-        <button class="addTaskBtn">ADD TASK</button>
+        <div class="taskOptions">
+            <button class="addTaskBtn">ADD TASK</button>
+            <button class="viewTaskBtn">VIEW TASK</button>
+        </div>
         <div class="addTaskModal">
             <div class="modalContent">
                 <div class="modalHeader">
-                    <h2>Add task</h2>
+                    <h2>ADD TASK</h2>
                     <span class="closeModal">&times;</span>
                 </div>
                 <form id="addTaskForm" action="POST">
                     <label for="taskName">Task Name: </label>
-                    <input type="text" name="taskName" id="taskName">
+                    <input type="text" name="taskName" id="taskName" placeholder="Task">
 
                     <label for="taskDate">Task Date: </label>
                     <input type="date" name="taskDate" id="taskDate">
 
                     <button type="submit"class="addTaskSubmitButton"> SUBMIT </button>
+                    <p class="addTaskStatus"></p>
 
                 </form>
             </div>

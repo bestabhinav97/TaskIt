@@ -1,11 +1,18 @@
 const express = require('express')
 const app = express()
 const path = require('path')
+const taskRoute = require('./routes/taskRoutes')
 
 
 app.use(express.json())
+
 app.use(express.static(path.join(__dirname,"public")))
 app.use(express.static(path.join(__dirname))) // for root level files
+app.use(express.urlencoded({extended: true}))
+
+app.use("/api",taskRoute)
+
+
 app.use('/model', express.static(path.join(__dirname, "model")))
 
 
