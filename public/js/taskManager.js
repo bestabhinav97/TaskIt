@@ -5,14 +5,76 @@ export class taskManager{
         this.tasks = []
     }
 
-    addTask = (taskName,taskDate)=>{
-        let newTask = new task(taskName,taskDate)
-        this.tasks.push(newTask)
-
+    async deleteTask(taskId){
+        try{
+            const response = await fetch('/api/tasks',{
+                method: "DELETE",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    id: taskId
+                })
+            })
+            if(response.ok){
+                return await response.json()
+            }
+        }catch(error){
+            console.log(error)
+        }
     }
 
-    getTasks(){
-        return this.tasks
+    async addTask(taskName, taskDate) {
+        try {
+            const response = await fetch("/api/tasks", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    taskName: taskName,
+                    taskDate: taskDate
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || "Failed to add task");
+            }
+
+            const newTask = await response.json();
+            console.log("Added new task", newTask);
+            return newTask;
+
+        } catch (error) {
+            console.error("Error adding task:", error);
+            throw error;
+        }
+    }
+
+    async getTasks(){
+        try{
+            const response = await fetch("/api/tasks")
+            if(!response.ok){
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            this.tasks = await response.json()
+            return this.tasks
+
+        }catch(error){
+            console.log("ERROR DISPLAYING TASKS")
+        }
+    }
+
+    async toggleComplete(taskId){
+        try{
+            const response = fetch(`api/tasks/${taskId}/toggle`,{
+            method: "PATCH",
+
+        })
+            if(await response.ok){
+                return response.json()
+            }
+        }catch(error){
+            console.log(error)
+        }
     }
 
 }

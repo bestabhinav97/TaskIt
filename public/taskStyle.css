@@ -85,16 +85,21 @@ nav{
 /** ----------------------------------------------------------------------------- */
 /* MODAL BOX STYLE */
 
+.addTaskStatus{
+    text-align: center;
+    font-family: var(--main-font);
+    font-weight: 700;
+    font-size: 20px;
+}
+
 .addTaskModal{
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
     display: none;
     /* Add these for better appearance */
-    background: white;
-    border-radius: 8px;
     padding: 20px;
     min-width: 300px;
     z-index: 1000;
@@ -120,7 +125,7 @@ nav{
 .modalHeader h2{
     font-weight: bolder;
     font-family: var(--main-font);
-    color: white;
+    color: black;
     font-size: 38px;
 }
 
@@ -138,7 +143,7 @@ nav{
 
 #addTaskForm label{
     font-family: var(--main-font);
-    color: white;
+    color: black;
     font-size: 25px;
 }
 
@@ -156,11 +161,12 @@ input{
 .modalContent{
     height: 450px;
     width: 350px;
-    border: 2px solid black;
+    border: 2px solid #5a3e1b;
     border-radius: 20px;
     padding: 30px;
-    background-color:var(--primary-color);
-
+    background-color: #f8f4ec;
+    box-shadow: 0 10px 30px rgba(135, 95, 36, 0.3);
+    color: #5a3e1b;
 }
 
 .addTaskSubmitButton{
@@ -182,11 +188,18 @@ input{
     cursor: pointer;
 }
 
+main{
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+}
+
 .taskOptions{
     display: flex;
-    gap: 70px;
-    justify-content: space-evenly;
+    gap: 30px;
     margin: 30px;
+    flex-direction: column;
+
+
 }
 
 .taskOptions button{
@@ -216,6 +229,103 @@ input{
     transform: translateY(0);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
+/*----------------------------------------------------------------------------------
+/* TASK CARD
+
+/* Task Container */
+#taskContainer {
+    display: grid;
+    grid-template-rows: auto;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.task-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 4px solid red;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.complete-btn {
+    background-color: #28a745;
+    color: white;
+    text-transform: uppercase;
+    width: 150px;
+    height: 35px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.complete-btn:hover {
+    background-color: #218838;
+}
+
+.completed{
+    background-color: lightgrey;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    width: 100px;
+    height: 35px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.task-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.task-header {
+    flex: 1;
+}
+
+.task-name {
+    margin: 0 0 8px 0;
+    color: #333;
+    font-size: 1.2em;
+}
+
+.task-status {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.task-date {
+    color: #6c757d;
+    font-size: 0.95em;
+    margin-right: 20px;
+}
+
+
+
+
 
 
 

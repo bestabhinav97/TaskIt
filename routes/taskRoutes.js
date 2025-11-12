@@ -4,4 +4,10 @@ const controller = require('./taskController');
 
 router.post('/tasks', controller.addTask);
 
+router.get('/tasks',controller.getTask)
+
+router.delete('/tasks',controller.deleteTask)
+
+router.patch('/tasks/:id/toggle',controller.toggleComplete)
+
 module.exports = router;

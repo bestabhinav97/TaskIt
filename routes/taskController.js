@@ -9,8 +9,8 @@ const readTaskFromFile = () =>{
     if(!fs.existsSync(tasksFilePath)){
         return []
     }
-    let tasks = fs.readFileSync("taskFilePath",'utf-8')
-    return json.parse(tasks)
+    let tasks = fs.readFileSync(tasksFilePath,'utf-8')
+    return JSON.parse(tasks)
 }
 
 const writeToFile = (task)=>{
@@ -42,7 +42,7 @@ function addTask(req,res){
 
     try{
             const newTask = {
-            id: Date.now().toString,
+            id: Date.now().toString(),
             name: taskName,
             date: taskDate,
             completed: false
@@ -59,4 +59,52 @@ function addTask(req,res){
 
 }
 
-module.exports = { addTask }
+function getTask(req,res){
+    try{
+        let task = readTaskFromFile()
+        return res.status(200).json(task)
+    }catch(error){
+        res.status(500).json({"error": "error gettting data"})
+    }
+
+}
+
+function deleteTask(req,res){
+    try{
+        let { id } = req.body
+        let tasks = readTaskFromFile()
+
+        let updatedTasks = tasks.filter(task => task.id != id)
+        writeToFile(updatedTasks)
+        res.status(200).json({message: "Task deleted successfully"})
+    }catch(error){
+        res.status(500).json({'error': "ERROR DELETING FILE"})
+    }
+}
+
+function toggleComplete(req,res){
+    try{
+        const {id} = req.params;
+        const tasks = readTaskFromFile()
+
+        const updatedTask = tasks.map(task => {
+            if(task.id === id){
+                if(task.completed === true){
+                    task.completed = false
+                }else{
+                    task.completed = true
+                }
+            }
+            return task
+        })
+
+        writeToFile(updatedTask)
+
+        res.status(200).json(updatedTask)
+
+    }catch(error){
+        console.log(error)
+    }
+}
+
+module.exports = { addTask , getTask, deleteTask, toggleComplete}
