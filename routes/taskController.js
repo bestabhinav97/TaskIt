@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { json } = require('stream/consumers');
 
+
 const tasksFilePath = path.join(__dirname, '../data/taskData.json');
 
 
@@ -9,18 +10,18 @@ const readTaskFromFile = () =>{
     if(!fs.existsSync(tasksFilePath)){
         return []
     }
-    let tasks = fs.readFileSync("taskFilePath",'utf-8')
-    return json.parse(tasks)
+    let tasks = fs.readFileSync(tasksFilePath,'utf-8')
+    return JSON.parse(tasks)
 }
 
-const writeToFile = (task)=>{
+const writeToFile = (tasks)=>{
     try{
         const fileDir = path.dirname(tasksFilePath)
         if(!fs.existsSync(fileDir)){
             fs.mkdir(fileDir,{recursive: true})
         }
 
-        fs.writeFileSync(tasksFilePath,JSON.stringify(task,null,2));
+        fs.writeFileSync(tasksFilePath, json.stringify(tasks,null,2));
 
     }catch(error){
         console.log(error)
@@ -42,7 +43,7 @@ function addTask(req,res){
 
     try{
             const newTask = {
-            id: Date.now().toString,
+            taskId: Date.now().toString(),
             name: taskName,
             date: taskDate,
             completed: false
@@ -58,5 +59,23 @@ function addTask(req,res){
     }
 
 }
+
+// function viewTask(req,res){
+//     let tasks = readTaskFromFile()
+
+//     try{
+//         if(!tasks){
+//             res.status(200).json([])
+//             console.log("NO TASKS")
+//         }else{
+//             return res.status(200).json(tasks)
+//         }
+//     }catch(error){
+//         console.error("ERROR READING THE FILES")
+//         return res.status(500).json({ "error": "Failed to read tasks" });
+//     }
+
+
+// }
 
 module.exports = { addTask }
