@@ -1,5 +1,6 @@
 :root{
     --main-font:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    --primary-color: rgb(135, 95, 36)
 }
 
 body{
@@ -7,77 +8,87 @@ body{
     border: 0px;
 }
 
-header{
-    background-color: #FAEAB1;
+header {
+    width: 100%;
+    background-color: var(--primary-color); /* high-contrast primary color */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 15px 0;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
 }
 
-nav{
+/* Navigation Bar */
+nav {
     display: flex;
-    justify-content: space-around;
-    flex-direction: row;
     align-items: center;
-    padding: 1rem 0;
+    justify-content: space-between;
+    width: 95%;              /* 95% width */
+    margin: 0 auto;          /* center it */
 }
 
+/* Logo */
 .logo {
-    font-family: var(--main-font);
-    color: #2D5158;
-    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;             /* white for contrast */
+    letter-spacing: 1px;
 }
 
+/* Search Bar */
 .searchBar {
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 10px;
 }
 
 .searchInput {
-    width: 400px;
-    height: 40px;
-    padding: 0 15px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-    font-family: var(--main-font);
+    padding: 8px 12px;
+    border: 1px solid #fff;  /* white border for contrast */
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.searchInput:focus {
+    border-color: #fff;
+    box-shadow: 0 0 4px rgba(255,255,255,0.4);
+    background-color: #fff;
 }
 
 .searchBtn {
-    background-color: #2D5158;
-    color: white;
+    background-color: #fff;  /* white button */
+    color: var(--primary-color);
+    padding: 8px 14px;
     border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
+    border-radius: 6px;
+    font-weight: 600;
     cursor: pointer;
-    font-family: var(--main-font);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .searchBtn:hover {
-    background-color: #4C7B83;
+    background-color: #f2e6d9;
+    transform: translateY(-1px);
 }
 
+/* Navigation List */
 .navList {
-    list-style: none;
     display: flex;
-    gap: 30px;
-    margin: 0;
-    padding: 0;
+    align-items: center;
+    gap: 20px;
+    list-style: none;
 }
 
-.navList a {
+.navList li a {
     text-decoration: none;
-    color: #4C7B83;
-    font-family: var(--main-font);
+    color: #fff;             /* white links for contrast */
     font-weight: 500;
-    padding: 5px 0;
-    transition: color 0.3s ease;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: background-color 0.3s;
 }
 
-.navList a:hover {
-    color: #2D5158;
+.navList li a:hover {
+    background-color: rgba(255,255,255,0.2);
 }
-
-

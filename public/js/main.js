@@ -17,8 +17,44 @@ const editTaskModal = document.querySelector(".editTaskModal")
 const viewTaskBtn = document.querySelector(".viewTaskBtn")
 
 
+//DATE SORT
+const filterForm = document.getElementById("filterForm")
+
+
+
 
 //EVENT LISTENER
+
+filterForm.addEventListener("submit",async (e)=>{
+
+    const taskContainer = document.getElementById("taskContainer")
+    taskContainer.innerHTML = ""
+
+    e.preventDefault()
+    const filterDate = document.getElementById("dateSort").value
+    const filterStatus = document.getElementById("statusFilter").value
+
+
+
+    const tasks = await manager.getTasks()
+    let updatedTask = tasks
+    if(filterDate){
+        updatedTask = tasks.filter(task=> task.date === filterDate)
+
+    }
+
+    if(filterStatus === "pending"){
+        updatedTask = updatedTask.filter(task => task.completed === false)
+    }else if(filterStatus === "completed"){
+        updatedTask = updatedTask.filter(task => task.completed === true)
+    }
+
+    manager.displayTask(updatedTask)
+
+})
+
+
+
 addTaskBtn.addEventListener("click",()=>{
     addTaskModal.style.display = "block"
 })
@@ -54,6 +90,8 @@ addTaskForm.addEventListener('submit',async (e)=>{
             addTaskStatus.innerText = ""
         }, 2000)
 
+        viewTaskBtn.click()
+
     } catch (error) {
         console.error("Error:", error)
         addTaskStatus.innerText = "ERROR: " + error.message
@@ -64,45 +102,11 @@ addTaskForm.addEventListener('submit',async (e)=>{
 viewTaskBtn.addEventListener('click', async () => {
     try {
         let tasks = await manager.getTasks()
-        console.log(tasks)
+
         let taskContainer = document.getElementById("taskContainer")
-
-        // Clear existing tasks before displaying new ones
         taskContainer.innerHTML = ''
+        manager.displayTask(tasks)
 
-        for(let task of tasks){
-            let taskCard = document.createElement("div")
-            taskCard.className = "task-card" // Add CSS class
-
-            let taskName = task.name
-            let taskDate = task.date
-            let taskCompleted = task.completed
-
-
-            const formattedDate = new Date(taskDate).toLocaleDateString()
-            const statusClass = taskCompleted ? "completed" : "pending"
-
-            taskCard.innerHTML = `
-
-            <div class="task-header">
-                    <h3 class="task-name">${taskName}</h3>
-                    <span class="task-status ${statusClass}">
-                        ${taskCompleted ? '✓ Completed' : '⏳ Pending'}
-                    </span>
-                </div>
-                <div class="task-date">📅 ${formattedDate}</div>
-                <div class="task-actions">
-                    <button class = "edit-btn" data-id ="${task.id}"> EDIT </button>
-                    <button class="complete-btn" data-id="${task.id}">
-                        ${taskCompleted ? 'Undo' : 'Complete'}
-                    </button>
-                    <button class="delete-btn" data-id="${task.id}">Delete</button>
-                </div>
-
-            `
-
-            taskContainer.appendChild(taskCard)
-        }
 
     } catch (error) {
         console.error("Error loading tasks:", error)
@@ -124,15 +128,18 @@ document.getElementById("taskContainer").addEventListener('click',async function
         const taskId = e.target.getAttribute('data-id')
         const status = await manager.toggleComplete(taskId)
         console.log(status)
-
-
-
         const taskCard = e.target.closest(".task-card")
-        if(taskCard){
-            taskCard.classList.toggle("completed")
+        const statusSpan = taskCard.querySelector(".task-status")
+        const completeBtn = taskCard.querySelector(".complete-btn")
+        if (status) {
+            taskCard.classList.add("completed")
+            statusSpan.innerText = '✓ Completed'
+            completeBtn.innerText = "Undo"
+        } else {
+            taskCard.classList.remove('completed')
+            statusSpan.innerText = '⏳ Pending'
+            completeBtn.innerText = "Complete"
         }
-
-        viewTaskBtn.click()
     }
 
     if(e.target.classList.contains("edit-btn")){

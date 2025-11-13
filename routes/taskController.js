@@ -104,17 +104,23 @@ function toggleComplete(req,res){
     try{
         const {id} = req.params;
         const tasks = readTaskFromFile()
+        let toggledTask = null;
 
         const updatedTask = tasks.map(task => {
             if(task.id === id){
                 task.completed = !task.completed;
+                toggledTask = task;
             }
             return task
         })
 
         writeToFile(updatedTask)
 
-        res.status(200).json(updatedTask)
+        if (toggledTask) {
+            res.status(200).json(toggledTask.completed)
+        } else {
+            res.status(404)
+        }
 
     }catch(error){
         console.log(error)

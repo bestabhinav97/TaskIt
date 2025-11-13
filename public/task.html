@@ -16,7 +16,7 @@
             </div>
             <ul class="navList">
                 <li><a href="index.html">HOME</a></li>
-                <li><a href="task.html">POST</a></li>
+                <li><a href="task.html">TASK</a></li>
             </ul>
         </nav>
     </header>
@@ -26,6 +26,23 @@
         <div class="taskOptions">
             <button class="addTaskBtn">ADD TASK</button>
             <button class="viewTaskBtn">VIEW TASK</button>
+
+            <div class="filter">
+                <form id="filterForm" class="filterForm">
+                    <label for="dateSort">Filter by Date:</label>
+                    <input type="date" id="dateSort">
+
+                    <label for="statusFilter">Filter by Status:</label>
+                    <select id="statusFilter">
+                        <option value="">All</option>
+                        <option value="completed">Completed</option>
+                        <option value="pending">Pending</option>
+                    </select>
+
+                    <button type="submit" id="submitFilter">Apply Filters</button>
+                </form>
+
+            </div>
         </div>
         <div class="addTaskModal">
             <div class="modalContent">

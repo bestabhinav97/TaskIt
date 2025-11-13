@@ -8,77 +8,89 @@ body{
     border: 0px;
 }
 
-header{
-    background-color: #FAEAB1;
+header {
+    width: 100%;
+    background-color: var(--primary-color); /* high-contrast primary color */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 15px 0;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
 }
 
-nav{
+/* Navigation Bar */
+nav {
     display: flex;
-    justify-content: space-around;
-    flex-direction: row;
     align-items: center;
-    padding: 1rem 0;
+    justify-content: space-between;
+    width: 95%;
+    margin: 0 auto;
 }
 
+/* Logo */
 .logo {
-    font-family: var(--main-font);
-    color: #2D5158;
-    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
 }
 
+/* Search Bar */
 .searchBar {
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 10px;
 }
 
 .searchInput {
-    width: 400px;
-    height: 40px;
-    padding: 0 15px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-    font-family: var(--main-font);
+    padding: 8px 12px;
+    border: 1px solid #fff;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.searchInput:focus {
+    border-color: #fff;
+    box-shadow: 0 0 4px rgba(255,255,255,0.4);
+    background-color: #fff;
 }
 
 .searchBtn {
-    background-color: #2D5158;
-    color: white;
+    background-color: #fff;  /* white button */
+    color: var(--primary-color);
+    padding: 8px 14px;
     border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
+    border-radius: 6px;
+    font-weight: 600;
     cursor: pointer;
- font-family: var(--main-font);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .searchBtn:hover {
-    background-color: #4C7B83;
+    background-color: #f2e6d9;
+    transform: translateY(-1px);
 }
 
+/* Navigation List */
 .navList {
-    list-style: none;
     display: flex;
-    gap: 30px;
-    margin: 0;
-    padding: 0;
+    align-items: center;
+    gap: 20px;
+    list-style: none;
 }
 
-.navList a {
+.navList li a {
     text-decoration: none;
-    color: #4C7B83;
-    font-family: var(--main-font);
+    color: #fff;             /* white links for contrast */
     font-weight: 500;
-    padding: 5px 0;
-    transition: color 0.3s ease;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: background-color 0.3s;
 }
 
-.navList a:hover {
-    color: #2D5158;
+.navList li a:hover {
+    background-color: rgba(255,255,255,0.2);
 }
 
 
@@ -248,10 +260,14 @@ input{
     background-color: lightblue;
     border-radius: 8px;
     border: 0px;
+    transition: all 0.2s ease;
+    font-family: var(--main-font);
 }
 
 .edit-btn:hover{
     cursor: pointer;
+    background-color: rgb(61, 170, 206);
+    font-family: var(--main-font);
 }
 
 
@@ -350,10 +366,11 @@ main{
 
 /* Task Container */
 #taskContainer {
-    display: grid;
-    grid-template-rows: auto;
-    gap: 25px;
+    display: flex;
+    flex-direction: column;   /* stack all task-cards vertically */
+    gap: 20px;                /* uniform spacing between tasks */
     margin-top: 20px;
+    width: 95%;
 }
 
 .task-card {
@@ -366,6 +383,8 @@ main{
     border-left: 6px solid red;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;               /* always full width of container */
+    min-height: 80px;          /* keeps each card same height */
 }
 
 .task-card.completed{
@@ -398,12 +417,12 @@ main{
     transition: background-color 0.2s ease;
 }
 
-.complete-btn:hover {
-    background-color: #218838;
+.complete-btn:is(.completed *) {
+    background-color: gray;
 }
 
-.completed{
-    background-color: lightgreen;
+.complete-btn:hover {
+    background-color: #218838;
 }
 
 .delete-btn {
@@ -444,6 +463,11 @@ main{
     font-weight: 500;
 }
 
+.task-status:is(.completed *) {
+    color: white;
+    background-color: green;
+}
+
 .task-date {
     color: black;
     font-size: 0.95em;
@@ -451,6 +475,78 @@ main{
     font-weight: 700;
 }
 
+/*=========================================================================================*/
+#dateSort {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.filter {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  flex-direction: column;
+}
+
+.filterForm {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  background: #f9fafb;
+  padding: 12px 18px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.filterForm label {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.filterForm input[type="date"],
+.filterForm select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #fff;
+}
+
+.filterForm input[type="date"]:focus,
+.filterForm select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0,123,255,0.4);
+}
+
+#submitFilter {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+#submitFilter:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+
+#submitFilter:active {
+  transform: translateY(0);
+}
 
 
 

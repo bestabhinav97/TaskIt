@@ -5,6 +5,13 @@ export class taskManager{
         this.tasks = []
     }
 
+    validateInput(taskDateInput){
+        const today = new Date()
+        today.setHours(0,0,0,0)
+        console.log(today)
+        return true
+    }
+
     async deleteTask(taskId){
         try{
             const response = await fetch('/api/tasks',{
@@ -65,12 +72,12 @@ export class taskManager{
 
     async toggleComplete(taskId){
         try{
-            const response = fetch(`api/tasks/${taskId}/toggle`,{
+            const response = await fetch(`api/tasks/${taskId}/toggle`,{
             method: "PATCH",
 
         })
-            if(await response.ok){
-                return response.json()
+            if(response.ok){
+                return await response.json()
             }
         }catch(error){
             console.log(error)
@@ -100,6 +107,52 @@ export class taskManager{
         }catch(error){
             console.log(error)
         }
+    }
+
+    displayTask(tasks){
+        let taskContainer = document.getElementById("taskContainer")
+
+        // Clear existing tasks before displaying new ones
+        taskContainer.innerHTML = ''
+
+        for(let task of tasks){
+            let taskCard = document.createElement("div")
+            taskCard.className = "task-card" // Add CSS class
+
+            let taskName = task.name
+            let taskDate = task.date
+            let taskCompleted = task.completed
+
+
+            const formattedDate = new Date(taskDate).toLocaleDateString()
+            const statusClass = taskCompleted ? "completed" : "pending"
+
+            if (taskCompleted) {
+                taskCard.classList.add("completed")
+            }
+
+            taskCard.innerHTML = `
+
+            <div class="task-header">
+                    <h3 class="task-name">${taskName}</h3>
+                    <span class="task-status">
+                        ${taskCompleted ? '✓ Completed' : '⏳ Pending'}
+                    </span>
+                </div>
+                <div class="task-date">📅 ${formattedDate}</div>
+                <div class="task-actions">
+                    <button class = "edit-btn" data-id ="${task.id}"> EDIT </button>
+                    <button class="complete-btn" data-id="${task.id}">
+                        ${taskCompleted ? 'Undo' : 'Complete'}
+                    </button>
+                    <button class="delete-btn" data-id="${task.id}">Delete</button>
+                </div>
+
+            `
+
+            taskContainer.appendChild(taskCard)
+        }
+
     }
 
 }
