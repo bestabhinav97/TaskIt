@@ -10,4 +10,6 @@ router.delete('/tasks',controller.deleteTask)
 
 router.patch('/tasks/:id/toggle',controller.toggleComplete)
 
+router.put("/tasks",controller.editTask)
+
 module.exports = router;

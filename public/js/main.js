@@ -83,7 +83,8 @@ viewTaskBtn.addEventListener('click', async () => {
             const statusClass = taskCompleted ? "completed" : "pending"
 
             taskCard.innerHTML = `
-                <div class="task-header">
+
+            <div class="task-header">
                     <h3 class="task-name">${taskName}</h3>
                     <span class="task-status ${statusClass}">
                         ${taskCompleted ? '✓ Completed' : '⏳ Pending'}
@@ -97,6 +98,7 @@ viewTaskBtn.addEventListener('click', async () => {
                     </button>
                     <button class="delete-btn" data-id="${task.id}">Delete</button>
                 </div>
+
             `
 
             taskContainer.appendChild(taskCard)
@@ -123,7 +125,12 @@ document.getElementById("taskContainer").addEventListener('click',async function
         const status = await manager.toggleComplete(taskId)
         console.log(status)
 
-        e.target.classList.toggle("completed")
+
+
+        const taskCard = e.target.closest(".task-card")
+        if(taskCard){
+            taskCard.classList.toggle("completed")
+        }
 
         viewTaskBtn.click()
     }
@@ -142,12 +149,31 @@ document.getElementById("taskContainer").addEventListener('click',async function
             e.preventDefault();
             const  newTaskInputField = document.getElementById("editTaskName");
             const newTaskDateInputField = document.getElementById("editTaskDate");
+            const editTaskStatus = document.querySelector(".editTaskStatus")
             const newTaskName = newTaskInputField.value
             const newTaskDate = newTaskDateInputField.value
 
             console.log(newTaskName,newTaskDate)
 
-            manager.editTask(newTaskName,newTaskDate);
+            let editedTask = manager.editTask(newTaskName,newTaskDate,taskId);
+            console.log(editedTask)
+
+
+            editTaskStatus.innerText = "TASK EDITED SUCCESSFULY"
+
+            setTimeout(()=>{
+                editTaskModal.style.display = "none"
+                editTaskStatus.innerText = ""
+
+
+            },4000)
+
+            newTaskInputField.value = ""
+            newTaskDateInputField.value = ""
+
+            viewTaskBtn.click()
+
+
 
         })
 

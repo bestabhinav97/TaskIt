@@ -244,6 +244,18 @@ input{
 
 }
 
+.edit-btn{
+    background-color: lightblue;
+    border-radius: 8px;
+    border: 0px;
+}
+
+.edit-btn:hover{
+    cursor: pointer;
+}
+
+
+
 #addTaskForm label{
     font-family: var(--main-font);
     color: black;
@@ -351,7 +363,19 @@ main{
     background-color: #f8f9fa;
     padding: 20px;
     border-radius: 12px;
-    border-left: 4px solid red;
+    border-left: 6px solid red;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-card.completed{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 6px solid green;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -379,7 +403,7 @@ main{
 }
 
 .completed{
-    background-color: lightgrey;
+    background-color: lightgreen;
 }
 
 .delete-btn {
@@ -421,9 +445,10 @@ main{
 }
 
 .task-date {
-    color: #6c757d;
+    color: black;
     font-size: 0.95em;
     margin-right: 20px;
+    font-weight: 700;
 }
 
 

@@ -1,8 +1,8 @@
 [
   {
     "id": "1762942312449",
-    "name": "Go to shopping mall",
-    "date": "2025-11-20",
+    "name": "Beat up Timur",
+    "date": "2025-11-14",
     "completed": false
   },
   {
@@ -21,6 +21,12 @@
     "id": "1762985504765",
     "name": "haskdhas",
     "date": "2025-11-21",
+    "completed": false
+  },
+  {
+    "id": "1762993031269",
+    "name": "lets see",
+    "date": "2025-11-19",
     "completed": false
   }
 ]

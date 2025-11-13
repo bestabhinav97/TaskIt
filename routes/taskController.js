@@ -1,9 +1,27 @@
 const fs = require('fs');
 const path = require('path');
-const { json } = require('stream/consumers');
+
 
 const tasksFilePath = path.join(__dirname, '../data/taskData.json');
 
+
+const editTask = (req, res)=>{
+    try{
+        let {newTaskName , newTaskDate, taskId} = req.body
+        let tasks = readTaskFromFile()
+        let updatedTask = tasks.map(task => {
+            if(task.id == taskId){
+                task.name = newTaskName
+                task.date = newTaskDate
+            }
+            return task
+        })
+        writeToFile(updatedTask)
+        res.status(200).json("TASK CHANGED SUCCESSFULLY")
+    }catch(error){
+        res.status(500).json({"error": "ERROR IN SERVER "})
+    }
+}
 
 const readTaskFromFile = () =>{
     if(!fs.existsSync(tasksFilePath)){
@@ -34,7 +52,7 @@ function addTask(req,res){
     const {taskName , taskDate} = req.body
 
     if(!taskName || !taskDate){
-        console.log("Missign Field")
+        console.log("Missing Field")
         return res.status(400).json({"error": "MISSING INPUT FIELD"})
     }
 
@@ -89,11 +107,7 @@ function toggleComplete(req,res){
 
         const updatedTask = tasks.map(task => {
             if(task.id === id){
-                if(task.completed === true){
-                    task.completed = false
-                }else{
-                    task.completed = true
-                }
+                task.completed = !task.completed;
             }
             return task
         })
@@ -107,4 +121,4 @@ function toggleComplete(req,res){
     }
 }
 
-module.exports = { addTask , getTask, deleteTask, toggleComplete}
+module.exports = { addTask , getTask, deleteTask, toggleComplete, editTask}
