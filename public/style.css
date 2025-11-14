@@ -92,3 +92,94 @@ nav {
 .navList li a:hover {
     background-color: rgba(255,255,255,0.2);
 }
+
+/*==========================================================*/
+/* PROGRESS BAR */
+
+.progressBarContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.progressBar1{
+    display: flex;
+
+}
+
+.skill{
+    height: 200px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.outer{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    position: relative;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 6px 6px 10px -1px rgba(0,0,0,0.15),
+                -6px -6px 10px -1px rgba(255,255,255,0.7);
+}
+
+.inner{
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+
+
+    box-shadow:inset 4px 4px 6px -1px rgba(0,0,0,0.2),
+                inset -4px -4px 6px -1px rgba(255,255,255,0.7),
+                0.5px 0.5px 0px rgba(0,0,0,0.15),
+                -0.5px -0.5px 0px rgba(255,255,255,1),
+                0px 12px 10px -10px rgba(0,0,0,0.5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+
+
+
+}
+
+#progressPercent1{
+    font-weight: 800;
+    font-size: large;
+}
+
+svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+}
+
+#progressCircle1{
+    stroke: rgb(37, 163, 37);
+    stroke-dasharray: 565;
+
+    filter: drop-shadow(0 0 3px #00e676);
+    stroke-dashoffset: 565;
+
+
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+
+    transition: stroke-dashoffset 1s linear; /* smooth animation */
+}
+
+
+
+
