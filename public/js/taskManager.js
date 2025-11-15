@@ -115,6 +115,8 @@ export class taskManager{
         // Clear existing tasks before displaying new ones
         taskContainer.innerHTML = ''
 
+
+
         for(let task of tasks){
             let taskCard = document.createElement("div")
             taskCard.className = "task-card" // Add CSS class

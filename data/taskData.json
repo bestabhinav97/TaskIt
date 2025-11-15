@@ -3,13 +3,7 @@
     "id": "1763026692404",
     "name": "Beat Up LOLO",
     "date": "2025-11-28",
-    "completed": false
-  },
-  {
-    "id": "1763026941875",
-    "name": "Go to the gym",
-    "date": "2025-11-21",
-    "completed": false
+    "completed": true
   },
   {
     "id": "1763028253962",
@@ -22,5 +16,47 @@
     "name": "University",
     "date": "2025-11-21",
     "completed": true
+  },
+  {
+    "id": "1763177711458",
+    "name": "Study for exam",
+    "date": "2025-11-27",
+    "completed": true
+  },
+  {
+    "id": "1763180991423",
+    "name": "Go to university",
+    "date": "2025-11-20",
+    "completed": true
+  },
+  {
+    "id": "1763188028472",
+    "name": "Code",
+    "date": "2025-11-22",
+    "completed": false
+  },
+  {
+    "id": "1763188042669",
+    "name": "Play sekiro",
+    "date": "2025-11-19",
+    "completed": false
+  },
+  {
+    "id": "1763188052094",
+    "name": "GGWP",
+    "date": "2025-11-28",
+    "completed": false
+  },
+  {
+    "id": "1763188063645",
+    "name": "BLA BLA",
+    "date": "2025-11-28",
+    "completed": false
+  },
+  {
+    "id": "1763188074076",
+    "name": "JESUS",
+    "date": "2025-11-21",
+    "completed": false
   }
 ]

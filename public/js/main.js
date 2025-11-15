@@ -3,6 +3,8 @@ import { taskManager } from "./taskManager.js"
 const manager = new taskManager()
 
 
+
+
 //ADD TASK BUTTON
 const addTaskModal = document.querySelector(".addTaskModal")
 const closeTaskModal = document.querySelector(".closeModal")
@@ -20,6 +22,19 @@ const viewTaskBtn = document.querySelector(".viewTaskBtn")
 //DATE SORT
 const filterForm = document.getElementById("filterForm")
 
+//SARCH BAR
+
+const searchButton = document.querySelector(".searchBtn")
+
+searchButton.addEventListener('click',async ()=>{
+    const searchInputField = document.querySelector(".searchInput")
+    let searchInput = searchInputField.value.toLowerCase()
+    let tasks = await manager.getTasks()
+    tasks = tasks.filter(task => task.name.toLowerCase().includes(searchInput))
+    manager.displayTask(tasks)
+    searchInput = ''
+
+})
 
 
 
@@ -37,6 +52,7 @@ filterForm.addEventListener("submit",async (e)=>{
 
 
     const tasks = await manager.getTasks()
+
     let updatedTask = tasks
     if(filterDate){
         updatedTask = tasks.filter(task=> task.date === filterDate)

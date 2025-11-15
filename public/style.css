@@ -9,13 +9,10 @@ body{
 }
 
 header {
-    width: 100%;
-    background-color: var(--primary-color); /* high-contrast primary color */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, rgb(135, 95, 36), rgb(175, 130, 60));
     padding: 15px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    border-bottom: 2px solid rgba(255,255,255,0.2);
 }
 
 /* Navigation Bar */
@@ -72,11 +69,20 @@ nav {
     transform: translateY(-1px);
 }
 
+/* DASHBOARD TITLE */
+#dashBoardTitle{
+    padding: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+    font-family: var(--main-font);
+    font-size: 30px;
+
+}
+
 /* Navigation List */
 .navList {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 80px;
     list-style: none;
 }
 
@@ -96,14 +102,36 @@ nav {
 /*==========================================================*/
 /* PROGRESS BAR */
 
+
+.dashboardContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+}
+
+
+
 .progressBarContainer{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    margin-top: 30px;
+    background: #f7f7f7;
+    border-radius: 20px;
+    width: 50%;
+    justify-self: center;
+    padding: 30px;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.15),
+        inset 0 0 8px rgba(255, 255, 255, 0.6);
 }
 
 .progressBar1{
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
 }
 
@@ -113,7 +141,12 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: transform 0.35s ease;
 
+}
+
+.skill:hover{
+    transform: scale(1.15);             /* enlarges entire circular bar */
 }
 
 .outer{
@@ -155,7 +188,8 @@ nav {
 
 #progressPercent1{
     font-weight: 800;
-    font-size: large;
+    font-size: 30px;
+    font-family: var(--main-font);
 }
 
 svg {
@@ -179,6 +213,186 @@ svg {
 
     transition: stroke-dashoffset 1s linear; /* smooth animation */
 }
+
+.progressBar2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.skill2{
+    height: 200px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.35s ease;
+
+}
+
+.skill2:hover {
+    transform: scale(1.15);
+}
+
+
+
+.outer2{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    position: relative;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 6px 6px 10px -1px rgba(0,0,0,0.15),
+                -6px -6px 10px -1px rgba(255,255,255,0.7);
+}
+
+.inner2{
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+
+
+    box-shadow:inset 4px 4px 6px -1px rgba(0,0,0,0.2),
+                inset -4px -4px 6px -1px rgba(255,255,255,0.7),
+                0.5px 0.5px 0px rgba(0,0,0,0.15),
+                -0.5px -0.5px 0px rgba(255,255,255,1),
+                0px 12px 10px -10px rgba(0,0,0,0.5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+
+
+
+}
+
+#progressPercent2{
+    font-weight: 800;
+    font-size: large;
+}
+
+svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+}
+
+#progressPercent2{
+    font-weight: 800;
+    font-size: 30px;
+    font-family: var(--main-font);
+}
+
+#progressCircle2{
+    stroke: rgb(163, 37, 37);
+    stroke-dasharray: 565;
+
+    filter: drop-shadow(0 0 3px #e63200);
+    stroke-dashoffset: 565;
+
+
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+
+    transition: stroke-dashoffset 1s linear; /* smooth animation */
+}
+
+#completedLabel,#pendingLabel{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding-top: 20px;
+    font-size: 23px;
+}
+
+.seperator{
+    border-right: 1px solid black;
+    opacity: 30%;
+}
+
+/*-------------------------------------------------*/
+/* INCOMPLETE TASK */
+
+.incompleteTask {
+    background: #f7f7f7;                       /* light neutral background */
+    border-radius: 18px;
+    padding: 20px 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1),
+                inset 0 0 8px rgba(255, 255, 255, 0.6);
+    margin-top: 30px;
+    width: 45%;                                 /* adjust to fit your layout */
+    transition: transform 0.3s ease;
+    height: 300px;
+    overflow-y: auto;
+}
+
+.pendingListHead{
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+
+}
+
+.incompleteTask:hover {
+    transform: translateY(-2px);               /* subtle hover lift */
+}
+
+.incompleteTask h3 {
+    font-family: var(--main-font);
+    font-size: 1.5rem;
+    color: rgb(0, 0, 0);                   /* matches your theme */
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+#pendingTaskList {
+    list-style: none;                           /* remove bullets */
+    padding: 0;
+    margin: 0;
+}
+
+#pendingTaskList li {
+    background: white;
+    padding: 12px 15px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.08),
+                -4px -4px 10px rgba(255,255,255,0.7);
+    font-family: var(--main-font);
+    font-weight: 500;
+    transition: 0.2s ease;
+    border: 1px solid rgba(135, 95, 36,0.4);
+    display: flex;
+    justify-content: space-between;
+}
+
+#pendingTaskList li:hover {
+    cursor: pointer;
+    border: 1px solid rgba(135, 95, 36);
+}
+
+.completeBtnHome{
+    background-color: lightgreen;
+    border-radius: 5px;
+    border: 0px;
+    box-shadow: 2px 2px 2px black;
+}
+
+.completeBtnHome:hover{
+    cursor: pointer;
+}
+
+
 
 
 

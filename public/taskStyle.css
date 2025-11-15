@@ -9,13 +9,13 @@ body{
 }
 
 header {
-    width: 100%;
-    background-color: var(--primary-color); /* high-contrast primary color */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, rgb(135, 95, 36), rgb(175, 130, 60));
     padding: 15px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    border-bottom: 2px solid rgba(255,255,255,0.2);
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 30 ;
 }
 
 /* Navigation Bar */
@@ -76,7 +76,7 @@ nav {
 .navList {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 80px;
     list-style: none;
 }
 
@@ -244,6 +244,13 @@ input{
     font-size: 38px;
 }
 
+.start-status {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
 
 
 
@@ -322,6 +329,8 @@ input{
 main{
     display: grid;
     grid-template-columns: 1fr 10fr;
+    align-items: start;
+    min-height: 100vh;
 }
 
 .taskOptions{
@@ -329,6 +338,10 @@ main{
     gap: 30px;
     margin: 30px;
     flex-direction: column;
+    position: sticky;
+    top: 120px;
+    z-index: 20;
+    height: fit-content ;
 
 
 }
@@ -336,25 +349,22 @@ main{
 .taskOptions button{
     height: 40px;
     width: 150px;
-    background: linear-gradient(135deg, rgb(135, 95, 36) 0%, rgb(160, 115, 50) 100%);
-    font-family: var(--main-font);
-    border: none;
+    background: #ffffff;
+    color: rgb(135, 95, 36);
+    border: 2px solid rgb(135, 95, 36);
     border-radius: 10px;
-    color: white;
+    font-family: var(--main-font);
     font-weight: 600;
     font-size: 14px;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-.taskOptions button:hover{
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(135deg, rgb(150, 105, 45) 0%, rgb(175, 125, 60) 100%);
+.taskOptions button:hover {
+    background: rgb(246, 236, 220);
 }
+
 
 .taskOptions button:active{
     transform: translateY(0);
