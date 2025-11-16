@@ -1,7 +1,9 @@
 import {taskManager} from "./taskManager.js"
+import { utils } from "../../utils/utils.js"
 
 
 const manager = new taskManager()
+const util = new utils()
 
 
 let pendingListContainer = document.getElementById("pendingTaskList")
@@ -118,3 +120,4 @@ async function setProgressMeter2(){
 await setProgressMeter1()
 await setProgressMeter2()
 await displayPendingTaskList()
+util.highlightActivePage()

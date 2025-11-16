@@ -1,132 +1,202 @@
 :root{
-    --main-font:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    --primary-color: rgb(135, 95, 36)
+    --main-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --primary-color: rgb(135, 95, 36);
+    --secondary-color: #667eea;
+    --accent-color: #764ba2;
+    --text-dark: #2d3748;
+    --text-light: #718096;
+    --bg-light: #f8fafc;
+    --bg-white: #ffffff;
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+    --border-radius: 12px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body{
-    margin: 0px;
-    border: 0px;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-light);
+    font-family: var(--main-font);
+    color: var(--text-dark);
 }
 
+/* Modern Header */
 header {
-    background: linear-gradient(135deg, rgb(135, 95, 36), rgb(175, 130, 60));
-    padding: 15px 0;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-    border-bottom: 2px solid rgba(255,255,255,0.2);
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    padding: 18px 0;
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
 }
 
-/* Navigation Bar */
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+    opacity: 0.3;
+}
+
+/* Modern Navigation */
 nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 95%;              /* 95% width */
-    margin: 0 auto;          /* center it */
+    width: 95%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 
-/* Logo */
 .logo {
     font-size: 1.8rem;
-    font-weight: 700;
-    color: #fff;             /* white for contrast */
-    letter-spacing: 1px;
+    font-weight: 800;
+    color: var(--bg-white);
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #fff, #f0f0f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-/* Search Bar */
+/* Modern Search */
 .searchBar {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .searchInput {
-    padding: 8px 12px;
-    border: 1px solid #fff;  /* white border for contrast */
-    border-radius: 6px;
+    padding: 12px 16px;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
     outline: none;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-size: 0.95rem;
+    width: 280px;
+    transition: var(--transition);
+}
+
+.searchInput::placeholder {
+    color: rgba(255,255,255,0.7);
 }
 
 .searchInput:focus {
-    border-color: #fff;
-    box-shadow: 0 0 4px rgba(255,255,255,0.4);
-    background-color: #fff;
+    border-color: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.15);
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.1);
 }
 
 .searchBtn {
-    background-color: #fff;  /* white button */
+    background: var(--bg-white);
     color: var(--primary-color);
-    padding: 8px 14px;
+    padding: 12px 20px;
     border: none;
-    border-radius: 6px;
+    border-radius: 10px;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
 }
 
 .searchBtn:hover {
-    background-color: #f2e6d9;
-    transform: translateY(-1px);
+    background: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
-/* DASHBOARD TITLE */
-#dashBoardTitle{
-    padding: 10px;
-    border-bottom: 1px solid rgba(0,0,0,0.3);
-    font-family: var(--main-font);
-    font-size: 30px;
-
-}
-
-/* Navigation List */
+/* Modern Navigation List */
 .navList {
     display: flex;
     align-items: center;
-    gap: 80px;
+    gap: 40px;
     list-style: none;
 }
 
 .navList li a {
     text-decoration: none;
-    color: #fff;             /* white links for contrast */
+    color: var(--bg-white);
     font-weight: 500;
-    padding: 6px 10px;
-    border-radius: 6px;
-    transition: background-color 0.3s;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: var(--transition);
+    position: relative;
 }
 
-.navList li a:hover {
-    background-color: rgba(255,255,255,0.2);
+.navList li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--bg-white);
+    transition: var(--transition);
+    transform: translateX(-50%);
 }
 
-/*==========================================================*/
-/* PROGRESS BAR */
+.navList li a:hover::after,
+.navList li a.active::after {
+    width: 80%;
+}
 
+.navList li a.active {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+}
 
-.dashboardContainer{
+/* Modern Dashboard Title */
+#dashBoardTitle {
+    padding: 25px 40px;
+    font-family: var(--main-font);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    background: linear-gradient(135deg, var(--text-dark), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+}
+
+/* Modern Dashboard Container */
+.dashboardContainer {
     display: flex;
     flex-direction: row;
-    gap: 25px;
+    gap: 30px;
+    padding: 0 40px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-
-
-.progressBarContainer{
+/* Modern Progress Bar Container */
+.progressBarContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin-top: 30px;
-    background: #f7f7f7;
-    border-radius: 20px;
-    width: 50%;
-    justify-self: center;
-    padding: 30px;
-
-    box-shadow:
-        0 4px 15px rgba(0, 0, 0, 0.15),
-        inset 0 0 8px rgba(255, 255, 255, 0.6);
+    align-items: center;
+    background: var(--bg-white);
+    border-radius: var(--border-radius);
+    padding: 40px 30px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(0,0,0,0.03);
+    flex: 1;
+    transition: var(--transition);
 }
 
+.progressBarContainer:hover {
+    box-shadow: 0 20px 25px rgba(0,0,0,0.12);
+}
+
+/* Modern Progress Bars */
 .progressBar1{
     display: flex;
     flex-direction: column;
@@ -308,92 +378,167 @@ svg {
     transition: stroke-dashoffset 1s linear; /* smooth animation */
 }
 
-#completedLabel,#pendingLabel{
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    padding-top: 20px;
-    font-size: 23px;
-}
 
-.seperator{
-    border-right: 1px solid black;
-    opacity: 30%;
-}
-
-/*-------------------------------------------------*/
-/* INCOMPLETE TASK */
-
-.incompleteTask {
-    background: #f7f7f7;                       /* light neutral background */
-    border-radius: 18px;
-    padding: 20px 25px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1),
-                inset 0 0 8px rgba(255, 255, 255, 0.6);
-    margin-top: 30px;
-    width: 45%;                                 /* adjust to fit your layout */
-    transition: transform 0.3s ease;
-    height: 300px;
-    overflow-y: auto;
-}
-
-.pendingListHead{
-    position: sticky;
+/* Add SVG gradients for modern look */
+svg {
+    position: absolute;
     top: 0;
-    background: white;
-    z-index: 10;
+    left: 0;
+}
 
+/* Modern Labels */
+#completedLabel, #pendingLabel {
+    font-family: var(--main-font);
+    padding-top: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-light);
+    text-align: center;
+}
+
+.seperator {
+    border-right: 1px solid rgba(0,0,0,0.08);
+    height: 200px;
+    align-self: center;
+}
+
+/* Modern Incomplete Task Section */
+.incompleteTask {
+    background: var(--bg-white);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--shadow-lg);
+    margin-top: 0;
+    width: 45%;
+    transition: var(--transition);
+    height: 400px;
+    overflow-y: auto;
+    border: 1px solid rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
 }
 
 .incompleteTask:hover {
-    transform: translateY(-2px);               /* subtle hover lift */
+    transform: translateY(-2px);
+    box-shadow: 0 20px 25px rgba(0,0,0,0.12);
+}
+
+.pendingListHead {
+    position: sticky;
+    top: 0;
+    background: var(--bg-white);
+    z-index: 10;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid rgba(0,0,0,0.05);
 }
 
 .incompleteTask h3 {
     font-family: var(--main-font);
-    font-size: 1.5rem;
-    color: rgb(0, 0, 0);                   /* matches your theme */
-    margin-bottom: 15px;
+    font-size: 1.4rem;
+    color: var(--text-dark);
+    margin: 0;
     font-weight: 700;
+    background: linear-gradient(135deg, var(--text-dark), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 #pendingTaskList {
-    list-style: none;                           /* remove bullets */
+    list-style: none;
     padding: 0;
     margin: 0;
+    flex: 1;
 }
 
 #pendingTaskList li {
-    background: white;
-    padding: 12px 15px;
-    border-radius: 12px;
+    background: var(--bg-white);
+    padding: 16px 20px;
+    border-radius: 10px;
     margin-bottom: 12px;
-    box-shadow: 4px 4px 10px rgba(0,0,0,0.08),
-                -4px -4px 10px rgba(255,255,255,0.7);
+    box-shadow: var(--shadow-sm);
     font-family: var(--main-font);
     font-weight: 500;
-    transition: 0.2s ease;
-    border: 1px solid rgba(135, 95, 36,0.4);
+    transition: var(--transition);
+    border: 1px solid rgba(0,0,0,0.05);
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 #pendingTaskList li:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-md);
+    transform: translateX(4px);
+}
+
+.completeBtnHome {
+    background: linear-gradient(135deg, #48bb78, #38a169);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    padding: 8px 16px;
+    font-weight: 600;
     cursor: pointer;
-    border: 1px solid rgba(135, 95, 36);
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    font-size: 0.85rem;
 }
 
-.completeBtnHome{
-    background-color: lightgreen;
-    border-radius: 5px;
-    border: 0px;
-    box-shadow: 2px 2px 2px black;
+.completeBtnHome:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    background: linear-gradient(135deg, #38a169, #2f855a);
 }
 
-.completeBtnHome:hover{
-    cursor: pointer;
+/* Custom Scrollbar */
+.incompleteTask::-webkit-scrollbar {
+    width: 6px;
 }
 
+.incompleteTask::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.05);
+    border-radius: 3px;
+}
 
+.incompleteTask::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 3px;
+}
 
+.incompleteTask::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
 
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .dashboardContainer {
+        flex-direction: column;
+    }
 
+    .progressBarContainer,
+    .incompleteTask {
+        width: 100%;
+    }
 
+    .seperator {
+        display: none;
+    }
+}
+
+/* Add these SVG gradients to your HTML */
+/*
+<svg style="position: absolute; width: 0; height: 0;">
+  <defs>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#48bb78" />
+      <stop offset="100%" stop-color="#4299e1" />
+    </linearGradient>
+    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ed8936" />
+      <stop offset="100%" stop-color="#e53e3e" />
+    </linearGradient>
+  </defs>
+</svg>
+*/

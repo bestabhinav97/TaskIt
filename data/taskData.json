@@ -37,8 +37,8 @@
   },
   {
     "id": "1763188042669",
-    "name": "Play sekiro",
-    "date": "2025-11-19",
+    "name": "Go pa universitet",
+    "date": "2025-11-17",
     "completed": false
   },
   {
@@ -57,6 +57,12 @@
     "id": "1763188074076",
     "name": "JESUS",
     "date": "2025-11-21",
+    "completed": false
+  },
+  {
+    "id": "1763276508646",
+    "name": "Task Add check",
+    "date": "2025-11-12",
     "completed": false
   }
 ]

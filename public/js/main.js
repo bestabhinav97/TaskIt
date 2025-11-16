@@ -1,6 +1,8 @@
 import { taskManager } from "./taskManager.js"
+import { utils } from "../../utils/utils.js"
 
 const manager = new taskManager()
+const util = new utils()
 
 
 
@@ -120,6 +122,7 @@ viewTaskBtn.addEventListener('click', async () => {
         let tasks = await manager.getTasks()
 
         let taskContainer = document.getElementById("taskContainer")
+        tasks = tasks.sort((a,b) => new Date(a.date) - new Date(b.date))
         taskContainer.innerHTML = ''
         manager.displayTask(tasks)
 
@@ -205,6 +208,8 @@ document.getElementById("taskContainer").addEventListener('click',async function
 
 
 })
+
+util.highlightActivePage()
 
 
 
